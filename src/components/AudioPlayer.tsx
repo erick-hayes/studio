@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
@@ -7,14 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
-// Placeholder audio - replace with actual stream URL
-const AUDIO_SRC = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; // Example MP3
+const AUDIO_SRC = "https://ic.mipam12.com/mipam12.acc";
 
 export default function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(0.5); // Default volume 50%
+  const [volume, setVolume] = useState(0.5);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -79,8 +77,7 @@ export default function AudioPlayer() {
   return (
     <Card className="w-full max-w-md mx-auto shadow-xl rounded-xl overflow-hidden">
       <CardHeader className="text-center bg-muted/50 p-6">
-        <CardTitle className="font-headline text-2xl">Radio en Vivo</CardTitle>
-        <CardDescription className="text-sm">Reproduciendo Ahora: WaveCast Mix</CardDescription>
+        <CardTitle className="font-headline text-2xl">Escucha en vivo</CardTitle>
       </CardHeader>
       <CardContent className="p-6 space-y-6">
         <audio
@@ -102,22 +99,6 @@ export default function AudioPlayer() {
           >
             {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8" />}
           </Button>
-        </div>
-
-        <div className="space-y-2">
-          <Slider
-            defaultValue={[0]}
-            value={[currentTime]}
-            max={duration || 100} // Provide a fallback if duration is 0
-            step={1}
-            onValueChange={handleSeek}
-            aria-label="Buscar"
-            className="[&>span:first-child]:h-2 [&>span:first-child>span]:bg-accent [&>span:last-child]:bg-accent"
-          />
-          <div className="flex justify-between text-xs text-muted-foreground">
-            <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(duration)}</span>
-          </div>
         </div>
 
         <div className="flex items-center gap-2">

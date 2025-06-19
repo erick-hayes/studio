@@ -10,12 +10,14 @@ export default function HomePage() {
       <SocialLinks />
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="font-headline text-xl">¡Bienvenido a WaveCast!</CardTitle>
+          <CardTitle className="font-headline text-xl">¡Avivamiento La voz del Espíritu Santo!</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">
-            Sintoniza tu estación favorita. Usa el reproductor de arriba para comenzar a escuchar.
-            Consulta nuestra programación e información de la estación usando las pestañas de abajo.
+             Tu fuente de inspiración diaria, ofreciendo una programación edificante con música que toca el alma,
+             mensajes de fe que fortalecen el espíritu y reflexiones que guían tu camino.
+             Conéctate con Dios y nuestra comunidad a través de alabanzas, enseñanzas bíblicas y programas 
+             que promueven los valores cristianos. ¡Un oasis de paz y esperanza en el dial!
           </p>
         </CardContent>
       </Card>

@@ -3,8 +3,8 @@ import { Facebook, MessageSquare } from 'lucide-react'; // Using MessageSquare f
 import { Button } from '@/components/ui/button';
 
 // Replace with actual links
-const WHATSAPP_LINK = "https://wa.me/yourphonenumber";
-const FACEBOOK_LINK = "https://facebook.com/yourstation";
+const WHATSAPP_LINK = "https://wa.me/59176111128";
+const FACEBOOK_LINK = "https://www.facebook.com/avivamiento.lavozdelespiritusanto";
 
 export default function SocialLinks() {
   return (

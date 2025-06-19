@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="dark"> {/* Changed lang to es */}
+    <html lang="es" className="dark">
       <head>
         <meta name="theme-color" content="#101010" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

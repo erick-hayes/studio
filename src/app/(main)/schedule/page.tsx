@@ -3,32 +3,39 @@ import type { Program } from '@/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Clock, UserCircle, AlertTriangle } from 'lucide-react';
 
-// IMPORTANT: Replace this with the actual public URL of your CSV file
-const CSV_URL = "YOUR_PUBLIC_CSV_LINK_HERE"; 
+// const CSV_URL = "/program.csv"; 
+const data = `1,06:00,Aliento Matutino,Pastor Samuel Reyes,Un mensaje inspirador y reflexiones bíblicas para comenzar el día con fe.
+2,07:30,La Voz de la Esperanza,Hermana Ana Castro,Testimonios de fe, alabanzas y oraciones para fortalecer el espíritu.
+3,09:00,Fe y Familia,Doctora Elena Soto,Consejos prácticos y sabiduría cristiana para la vida familiar y conyugal.
+4,11:00,Conectados con Dios,Joven David Jiménez,Música cristiana contemporánea y temas relevantes para la juventud.
+5,13:00,Noticias del Reino,Hermano Marcos Paz,Información sobre eventos de la comunidad cristiana y noticias con perspectiva bíblica.
+6,14:30,Sonidos de Adoración,Cantante Sofía Morales,Un espacio de alabanza y adoración con los mejores temas cristianos.
+7,16:00,Estudios Bíblicos,Maestro José Rivera,Análisis profundo de pasajes bíblicos y enseñanzas para el crecimiento espiritual.
+8,18:00,Testimonios de Poder,Evangelista Laura González,Historias reales de transformación y milagros a través de la fe.
+9,20:00,Oración y Clamor,Pastor Juan Mendoza,Un tiempo dedicado a la oración intercesora por las necesidades de los oyentes.
+10,22:00,Reflexiones Nocturnas,Reverendo Ricardo Flores,Meditaciones profundas y música tranquila para terminar el día en paz.
+`;
 
 async function fetchScheduleData(): Promise<Program[] | null> {
-  if (CSV_URL === "YOUR_PUBLIC_CSV_LINK_HERE") {
-    console.warn("CSV_URL is still the placeholder. Please update it in src/app/(main)/schedule/page.tsx");
-    return null; // Or return a default/empty schedule
-  }
-
   try {
-    const response = await fetch(CSV_URL, { cache: 'no-store' }); // { cache: 'no-store' } to always fetch fresh data
+
+    /*const response = await fetch(CSV_URL, { cache: 'no-store' });
     if (!response.ok) {
       console.error(`Error fetching CSV: ${response.status} ${response.statusText}`);
       return null;
     }
-    const csvText = await response.text();
-    const lines = csvText.trim().split('\\n');
+    const csvText = await response.text();*/
+    const csvText = data;
+    const lines = csvText.trim().split('\n');
     
-    if (lines.length <= 1) { // Only header or empty
+    if (lines.length < 1) { // Only header or empty
       return [];
     }
 
-    // Skip header row (lines[0])
-    const programs: Program[] = lines.slice(1).map(line => {
+    const programs: Program[] = lines.map(line => {
       const values = line.split(',');
-      // Basic CSV parsing, assumes no commas within fields and specific column order
+      console.log(line);
+      console.log(values);
       return {
         id: values[0]?.trim() || '',
         time: values[1]?.trim() || '',
@@ -47,31 +54,6 @@ async function fetchScheduleData(): Promise<Program[] | null> {
 
 export default async function SchedulePage() {
   const programs = await fetchScheduleData();
-
-  if (CSV_URL === "YOUR_PUBLIC_CSV_LINK_HERE") {
-    return (
-      <div className="space-y-8">
-        <h1 className="text-3xl font-headline font-bold text-center text-primary">Horario de Programación</h1>
-        <Card className="shadow-lg rounded-lg border-destructive">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-destructive">
-              <AlertTriangle className="w-6 h-6" />
-              Configuración Requerida
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-foreground">
-              Por favor, actualiza la URL del archivo CSV en el archivo <code>src/app/(main)/schedule/page.tsx</code>.
-            </p>
-            <p className="mt-2 text-muted-foreground text-sm">
-              Debes reemplazar <code>"YOUR_PUBLIC_CSV_LINK_HERE"</code> con el enlace público a tu archivo CSV de Google Sheets.
-            </p>
-             <p className="mt-4 text-foreground">Las columnas esperadas en el CSV son: <code>id,time,name,host,description</code> (en ese orden).</p>
-          </CardContent>
-        </Card>
-      </div>
-    )
-  }
 
   if (!programs) {
     return (
