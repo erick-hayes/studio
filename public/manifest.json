@@ -1,0 +1,23 @@
+{
+  "name": "WaveCast",
+  "short_name": "WaveCast",
+  "description": "Your favorite radio station, now as an app!",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFB6C1",
+  "theme_color": "#DC143C"
+}
