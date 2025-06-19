@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -6,9 +7,9 @@ import { Radio, CalendarDays, InfoIcon, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '/', label: 'Player', icon: Radio },
-  { href: '/schedule', label: 'Schedule', icon: CalendarDays },
-  { href: '/info', label: 'Info', icon: InfoIcon },
+  { href: '/', label: 'Reproductor', icon: Radio },
+  { href: '/schedule', label: 'Horario', icon: CalendarDays },
+  { href: '/info', label: 'Información', icon: InfoIcon },
 ];
 
 export default function TabBar() {

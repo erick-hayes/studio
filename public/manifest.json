@@ -1,11 +1,12 @@
+
 {
-  "name": "WaveCast",
+  "name": "WaveCast PWA",
   "short_name": "WaveCast",
-  "description": "Your favorite radio station, now as an app!",
+  "description": "WaveCast - Tu radio favorita, ahora como app instalable.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#101010",
-  "theme_color": "#101010",
+  "theme_color": "#E11D48",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",

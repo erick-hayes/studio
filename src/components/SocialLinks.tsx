@@ -1,3 +1,4 @@
+
 import { Facebook, MessageSquare } from 'lucide-react'; // Using MessageSquare for WhatsApp
 import { Button } from '@/components/ui/button';
 
@@ -13,7 +14,7 @@ export default function SocialLinks() {
         size="icon"
         asChild
         className="rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-200 ease-in-out transform hover:scale-110"
-        aria-label="Chat on WhatsApp"
+        aria-label="Chatea en WhatsApp"
       >
         <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
           <MessageSquare className="w-6 h-6" />
@@ -24,7 +25,7 @@ export default function SocialLinks() {
         size="icon"
         asChild
         className="rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-200 ease-in-out transform hover:scale-110"
-        aria-label="Visit our Facebook page"
+        aria-label="Visita nuestra página de Facebook"
       >
         <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer">
           <Facebook className="w-6 h-6" />

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
@@ -78,8 +79,8 @@ export default function AudioPlayer() {
   return (
     <Card className="w-full max-w-md mx-auto shadow-xl rounded-xl overflow-hidden">
       <CardHeader className="text-center bg-muted/50 p-6">
-        <CardTitle className="font-headline text-2xl">Live Radio</CardTitle>
-        <CardDescription className="text-sm">Now Playing: WaveCast Mix</CardDescription>
+        <CardTitle className="font-headline text-2xl">Radio en Vivo</CardTitle>
+        <CardDescription className="text-sm">Reproduciendo Ahora: WaveCast Mix</CardDescription>
       </CardHeader>
       <CardContent className="p-6 space-y-6">
         <audio
@@ -97,7 +98,7 @@ export default function AudioPlayer() {
             variant="ghost"
             size="icon"
             className="w-16 h-16 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-accent transition-all duration-200 ease-in-out transform hover:scale-110"
-            aria-label={isPlaying ? 'Pause' : 'Play'}
+            aria-label={isPlaying ? 'Pausar' : 'Reproducir'}
           >
             {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8" />}
           </Button>
@@ -110,7 +111,7 @@ export default function AudioPlayer() {
             max={duration || 100} // Provide a fallback if duration is 0
             step={1}
             onValueChange={handleSeek}
-            aria-label="Seek"
+            aria-label="Buscar"
             className="[&>span:first-child]:h-2 [&>span:first-child>span]:bg-accent [&>span:last-child]:bg-accent"
           />
           <div className="flex justify-between text-xs text-muted-foreground">
@@ -120,7 +121,7 @@ export default function AudioPlayer() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button onClick={toggleMute} variant="ghost" size="icon" aria-label={isMuted ? "Unmute" : "Mute"}>
+          <Button onClick={toggleMute} variant="ghost" size="icon" aria-label={isMuted ? "Reactivar Sonido" : "Silenciar"}>
             {isMuted || volume === 0 ? <VolumeX className="w-5 h-5 text-muted-foreground" /> : <Volume2 className="w-5 h-5 text-muted-foreground" />}
           </Button>
           <Slider
@@ -129,7 +130,7 @@ export default function AudioPlayer() {
             max={1}
             step={0.01}
             onValueChange={handleVolumeChange}
-            aria-label="Volume"
+            aria-label="Volumen"
             className="w-full [&>span:first-child]:h-2 [&>span:first-child>span]:bg-accent [&>span:last-child]:bg-accent"
           />
         </div>

@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,7 +9,7 @@ export default function AppHeader() {
         <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
           <Image
             src="https://placehold.co/120x40.png?text=WaveCast"
-            alt="WaveCast Logo"
+            alt="Logo WaveCast"
             width={120}
             height={40}
             className="rounded"

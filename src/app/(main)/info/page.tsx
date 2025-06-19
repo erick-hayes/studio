@@ -8,43 +8,43 @@ import { Button } from '@/components/ui/button';
 export default function InfoPage() {
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-headline font-bold text-center text-primary">About WaveCast</h1>
+      <h1 className="text-3xl font-headline font-bold text-center text-primary">Acerca de WaveCast</h1>
       
       <Card className="shadow-lg rounded-lg overflow-hidden">
         <Image 
           src="https://placehold.co/800x300.png" 
-          alt="Radio Station Mast" 
+          alt="Antena de estación de radio" 
           width={800} 
           height={300} 
           className="w-full h-48 object-cover"
           data-ai-hint="radio tower"
         />
         <CardHeader>
-          <CardTitle className="font-headline text-xl text-primary">Our Story</CardTitle>
+          <CardTitle className="font-headline text-xl text-primary">Nuestra Historia</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-foreground leading-relaxed">
-            WaveCast is your premier destination for handpicked tunes, engaging talk shows, and the latest community news. 
-            Born from a passion for music and connection, we strive to be the soundtrack to your day, every day.
-            Our mission is to deliver high-quality broadcasting that entertains, informs, and inspires our listeners.
+            WaveCast es tu destino principal para melodías seleccionadas, programas de entrevistas atractivos y las últimas noticias de la comunidad. 
+            Nacido de la pasión por la música y la conexión, nos esforzamos por ser la banda sonora de tu día, todos los días.
+            Nuestra misión es ofrecer una transmisión de alta calidad que entretenga, informe e inspire a nuestros oyentes.
           </p>
           <p className="text-foreground leading-relaxed">
-            We believe in the power of radio to bring people together. Whether you're tuning in during your morning commute, 
-            while working, or relaxing at home, WaveCast provides a diverse range of programs to suit every taste.
-            Join our growing family of listeners and experience the magic of radio!
+            Creemos en el poder de la radio para unir a las personas. Ya sea que sintonices durante tu viaje matutino, 
+            mientras trabajas o te relajas en casa, WaveCast ofrece una amplia gama de programas para todos los gustos.
+            ¡Únete a nuestra creciente familia de oyentes y experimenta la magia de la radio!
           </p>
         </CardContent>
       </Card>
 
       <Card className="shadow-lg rounded-lg">
         <CardHeader>
-          <CardTitle className="font-headline text-xl text-primary">Install Our App</CardTitle>
-          <CardDescription>Get quick access to WaveCast by installing our app on your device.</CardDescription>
+          <CardTitle className="font-headline text-xl text-primary">Instala Nuestra App</CardTitle>
+          <CardDescription>Obtén acceso rápido a WaveCast instalando nuestra app en tu dispositivo.</CardDescription>
         </CardHeader>
         <CardContent>
           <Link href="/pwa-install-guide" passHref>
             <Button variant="outline" className="w-full justify-between text-accent hover:bg-accent hover:text-accent-foreground">
-              How to Install Guide
+              Guía de Instalación
               <ChevronRight className="w-5 h-5" />
             </Button>
           </Link>
@@ -53,8 +53,8 @@ export default function InfoPage() {
 
       <Card className="shadow-lg rounded-lg">
         <CardHeader>
-          <CardTitle className="font-headline text-xl text-primary">Contact Us</CardTitle>
-          <CardDescription>Get in touch with the WaveCast team.</CardDescription>
+          <CardTitle className="font-headline text-xl text-primary">Contáctanos</CardTitle>
+          <CardDescription>Ponte en contacto con el equipo de WaveCast.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center gap-3">

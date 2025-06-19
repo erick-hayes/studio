@@ -1,3 +1,4 @@
+
 import AudioPlayer from '@/components/AudioPlayer';
 import SocialLinks from '@/components/SocialLinks';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,12 +10,12 @@ export default function HomePage() {
       <SocialLinks />
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="font-headline text-xl">Welcome to WaveCast!</CardTitle>
+          <CardTitle className="font-headline text-xl">¡Bienvenido a WaveCast!</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">
-            Tune in to your favorite station. Use the player above to start listening.
-            Check out our schedule and station info using the tabs below.
+            Sintoniza tu estación favorita. Usa el reproductor de arriba para comenzar a escuchar.
+            Consulta nuestra programación e información de la estación usando las pestañas de abajo.
           </p>
         </CardContent>
       </Card>
