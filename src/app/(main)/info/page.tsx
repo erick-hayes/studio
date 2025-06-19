@@ -1,6 +1,9 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, DownloadCloud, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export default function InfoPage() {
   return (
@@ -30,6 +33,21 @@ export default function InfoPage() {
             while working, or relaxing at home, WaveCast provides a diverse range of programs to suit every taste.
             Join our growing family of listeners and experience the magic of radio!
           </p>
+        </CardContent>
+      </Card>
+
+      <Card className="shadow-lg rounded-lg">
+        <CardHeader>
+          <CardTitle className="font-headline text-xl text-primary">Install Our App</CardTitle>
+          <CardDescription>Get quick access to WaveCast by installing our app on your device.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Link href="/pwa-install-guide" passHref>
+            <Button variant="outline" className="w-full justify-between text-accent hover:bg-accent hover:text-accent-foreground">
+              How to Install Guide
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+          </Link>
         </CardContent>
       </Card>
 
