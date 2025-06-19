@@ -1,18 +1,114 @@
 
 import type { Program } from '@/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Clock, UserCircle } from 'lucide-react';
+import { Clock, UserCircle, AlertTriangle } from 'lucide-react';
 
-const programs: Program[] = [
-  { id: '1', time: '07:00 - 10:00', name: 'Amanecer Musical', host: 'DJ Chispa', description: 'Comienza tu día con melodías animadas y vibras positivas.' },
-  { id: '2', time: '10:00 - 13:00', name: 'Ritmos de Mediodía', host: 'Annie Ritmo', description: 'La banda sonora perfecta para tu día de trabajo o descanso.' },
-  { id: '3', time: '13:00 - 16:00', name: 'Tarde de Relax', host: 'Alex Ondas', description: 'Relájate y desconecta con melodías suaves.' },
-  { id: '4', time: '16:00 - 19:00', name: 'Energía al Volante', host: 'Rick Viajero', description: 'Pistas llenas de energía para tu viaje.' },
-  { id: '5', time: '19:00 - 22:00', name: 'Desconexión Nocturna', host: 'Luna Noche', description: 'Sonidos relajantes para tu noche.' },
-  { id: '6', time: '22:00 - 01:00', name: 'Vibras de Medianoche', host: 'Rayo Cósmico', description: 'Explora sonidos eclécticos y temas profundos.' },
-];
+// IMPORTANT: Replace this with the actual public URL of your CSV file
+const CSV_URL = "YOUR_PUBLIC_CSV_LINK_HERE"; 
 
-export default function SchedulePage() {
+async function fetchScheduleData(): Promise<Program[] | null> {
+  if (CSV_URL === "YOUR_PUBLIC_CSV_LINK_HERE") {
+    console.warn("CSV_URL is still the placeholder. Please update it in src/app/(main)/schedule/page.tsx");
+    return null; // Or return a default/empty schedule
+  }
+
+  try {
+    const response = await fetch(CSV_URL, { cache: 'no-store' }); // { cache: 'no-store' } to always fetch fresh data
+    if (!response.ok) {
+      console.error(`Error fetching CSV: ${response.status} ${response.statusText}`);
+      return null;
+    }
+    const csvText = await response.text();
+    const lines = csvText.trim().split('\\n');
+    
+    if (lines.length <= 1) { // Only header or empty
+      return [];
+    }
+
+    // Skip header row (lines[0])
+    const programs: Program[] = lines.slice(1).map(line => {
+      const values = line.split(',');
+      // Basic CSV parsing, assumes no commas within fields and specific column order
+      return {
+        id: values[0]?.trim() || '',
+        time: values[1]?.trim() || '',
+        name: values[2]?.trim() || '',
+        host: values[3]?.trim() || undefined,
+        description: values[4]?.trim() || undefined,
+      };
+    }).filter(p => p.id && p.name && p.time); // Basic validation
+
+    return programs;
+  } catch (error) {
+    console.error("Failed to fetch or parse schedule data:", error);
+    return null;
+  }
+}
+
+export default async function SchedulePage() {
+  const programs = await fetchScheduleData();
+
+  if (CSV_URL === "YOUR_PUBLIC_CSV_LINK_HERE") {
+    return (
+      <div className="space-y-8">
+        <h1 className="text-3xl font-headline font-bold text-center text-primary">Horario de Programación</h1>
+        <Card className="shadow-lg rounded-lg border-destructive">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-destructive">
+              <AlertTriangle className="w-6 h-6" />
+              Configuración Requerida
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-foreground">
+              Por favor, actualiza la URL del archivo CSV en el archivo <code>src/app/(main)/schedule/page.tsx</code>.
+            </p>
+            <p className="mt-2 text-muted-foreground text-sm">
+              Debes reemplazar <code>"YOUR_PUBLIC_CSV_LINK_HERE"</code> con el enlace público a tu archivo CSV de Google Sheets.
+            </p>
+             <p className="mt-4 text-foreground">Las columnas esperadas en el CSV son: <code>id,time,name,host,description</code> (en ese orden).</p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  if (!programs) {
+    return (
+      <div className="space-y-8">
+        <h1 className="text-3xl font-headline font-bold text-center text-primary">Horario de Programación</h1>
+        <Card className="shadow-lg rounded-lg border-destructive">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-destructive">
+              <AlertTriangle className="w-6 h-6" />
+              Error al Cargar el Horario
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-foreground">
+              No se pudo cargar la programación. Por favor, inténtalo de nuevo más tarde o verifica la URL del CSV.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (programs.length === 0) {
+    return (
+      <div className="space-y-8">
+        <h1 className="text-3xl font-headline font-bold text-center text-primary">Horario de Programación</h1>
+        <Card className="shadow-lg rounded-lg">
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">
+              No hay programas en el horario actualmente.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-headline font-bold text-center text-primary">Horario de Programación</h1>
