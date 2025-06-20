@@ -1,12 +1,10 @@
 
-import AudioPlayer from '@/components/AudioPlayer';
 import SocialLinks from '@/components/SocialLinks';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function HomePage() {
   return (
     <div className="flex flex-col items-center justify-center space-y-8">
-      <AudioPlayer />
       <SocialLinks />
       <Card className="w-full max-w-md">
         <CardHeader>
