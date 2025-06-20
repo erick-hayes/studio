@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Clock, UserCircle, AlertTriangle, Loader2 } from 'lucide-react';
 
 // IMPORTANT: Replace this with the actual public URL of your CSV file
-const CSV_URL = "YOUR_PUBLIC_CSV_LINK_HERE";
+const CSV_URL:string = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSVkqKWcK30d3JlPs29CcYSVh1pPtXPTL2RAG7oTkG0IuxHFO5zqjjtAdCVFEVc0m3e-_S23gt6zjvx/pub?output=csv";
 
 export default function SchedulePage() {
   const [programs, setPrograms] = useState<Program[] | null>(null);
