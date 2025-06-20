@@ -4,9 +4,24 @@ import { useState, useEffect } from 'react';
 import type { Program } from '@/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Clock, UserCircle, AlertTriangle, Loader2 } from 'lucide-react';
+import { parse } from 'csv-parse';
 
 // IMPORTANT: Replace this with the actual public URL of your CSV file
 const CSV_URL:string = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSVkqKWcK30d3JlPs29CcYSVh1pPtXPTL2RAG7oTkG0IuxHFO5zqjjtAdCVFEVc0m3e-_S23gt6zjvx/pub?output=csv";
+
+const processFile = async (csvText: string): Promise<string[][]>=> {
+  return new Promise((resolve, reject) => {
+    parse(
+      csvText,
+      { comment: "#", },
+      (err, records) => {
+        if (err) {
+          reject(err);
+        }
+        else (resolve(records));
+      });
+  });
+};
 
 export default function SchedulePage() {
   const [programs, setPrograms] = useState<Program[] | null>(null);
@@ -26,7 +41,7 @@ export default function SchedulePage() {
           throw new Error(`Error fetching CSV: ${response.status} ${response.statusText}`);
         }
         const csvText = await response.text();
-        const lines = csvText.trim().split('\\n');
+        const lines = await processFile(csvText);
         
         if (lines.length <= 1) { // Only header or empty
           setPrograms([]);
@@ -35,13 +50,12 @@ export default function SchedulePage() {
 
         // Skip header row (lines[0])
         const parsedPrograms: Program[] = lines.slice(1).map(line => {
-          const values = line.split(',');
           return {
-            id: values[0]?.trim() || '',
-            time: values[1]?.trim() || '',
-            name: values[2]?.trim() || '',
-            host: values[3]?.trim() || undefined,
-            description: values[4]?.trim() || undefined,
+            id: line[0]?.trim() || '',
+            time: line[1]?.trim() || '',
+            name: line[2]?.trim() || '',
+            host: line[3]?.trim() || undefined,
+            description: line[4]?.trim() || undefined,
           };
         }).filter(p => p.id && p.name && p.time);
 
